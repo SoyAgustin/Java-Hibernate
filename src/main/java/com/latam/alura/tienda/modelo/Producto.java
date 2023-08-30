@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 /*En esta clase se hace el mapeo de una tabla (productos) de la DB
  * una entidad  JPA funciona como un espejo de una tabla en la DB*/
 @Entity
@@ -15,17 +16,17 @@ import javax.persistence.Table;
  * en este caso en la db tenemos productos y la clase 
  * se llama producto, para solucionar esto se usa la 
  * anotación Table*/
-@Table(name="productos")
+@Table(name = "productos")
 public class Producto {
 	/*En principio estos atributos son los nombres de las
 	 * columnas de la tabla*/
 	
 	@Id//Con estas anoteciones configuramos la llave primaria 
-	@GeneratedValue(strategy=GenerationType.IDENTITY) //el generationType depende de la base de datos, en este caso H2, se puede poner en AUTO
+	@GeneratedValue(strategy = GenerationType.IDENTITY)//el generationType depende de la base de datos, en este caso H2, se puede poner en AUTO
 	private Long id;
 	//@column(name="nombres") //En caso de que los nombres  sean diferentes se usa la anotación column
-	private String nombre;
-	private String descripcion;
+	private String nombre; 
+	private String descripcion; 
 	private BigDecimal precio;
 	
 	public Long getId() {
@@ -51,7 +52,6 @@ public class Producto {
 	}
 	public void setPrecio(BigDecimal precio) {
 		this.precio = precio;
-	}
-	
-	
+	} 
+
 }
