@@ -3,10 +3,10 @@ package com.latam.alura.tienda.prueba;
 import java.math.BigDecimal;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
+import com.latam.alura.tienda.dao.ProductoDao;
 import com.latam.alura.tienda.modelo.Producto;
+import com.latam.alura.tienda.utils.JPAUtils;
 
 public class RegistroDeProducto {
 
@@ -19,12 +19,15 @@ public class RegistroDeProducto {
 		/*Con esto se hace la conexion a la DB como se hacia 
 		 * con JDBC de forma manual, JPA ya tiene las clases
 		 * para no hacer la conexion tan manualmente*/
-		EntityManagerFactory factory = Persistence.
-		        createEntityManagerFactory("tienda");//Este nombre se configuro en la configuracion persistence.xml
-
-	    EntityManager em = factory.createEntityManager();
+		
+	    EntityManager em = JPAUtils.getEntityManager();
+	    
+	    ProductoDao productoDao = new ProductoDao(em);
+	    
 	    em.getTransaction().begin();
-	    em.persist(celular);
+	    
+	    productoDao.guardar(celular);
+	    
 	    em.getTransaction().commit();
 	    em.close();
 	}
