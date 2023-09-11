@@ -47,6 +47,18 @@ public class RegistroDeProducto {
 	    celulares.setNombre("SOFTWARES");
 	    
 	    em.flush();
+	    
+	    em.remove(celulares);
+	    em.flush();
+	    em.clear();
+	    
+	    /*Las entidades que se encuentran dentro de 
+	     * el bloque persist(); --- clear();
+	     * se encuentran en estado managed
+	     * Después de cada clear(); se puede traer la entidad 
+	     * desde la base de datos con un merge();
+	     * El metodo flush no cambia el estado managed
+	     * a detached();*/
 	}
 
 }
