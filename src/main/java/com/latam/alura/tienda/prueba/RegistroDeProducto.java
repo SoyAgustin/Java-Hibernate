@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import javax.persistence.EntityManager;
 
+import com.latam.alura.tienda.dao.CategoriaDao;
 import com.latam.alura.tienda.dao.ProductoDao;
 import com.latam.alura.tienda.modelo.Categoria;
 import com.latam.alura.tienda.modelo.Producto;
@@ -25,11 +26,16 @@ public class RegistroDeProducto {
 		
 	    EntityManager em = JPAUtils.getEntityManager();
 	    
+	    /*Se abre una conexion em antes de los DAO
+	     * para que después se hagan las correspondientes
+	     * transacciones con la misma conexion */
 	    ProductoDao productoDao = new ProductoDao(em);
+	    CategoriaDao categoriaDao = new CategoriaDao(em);
 	    
 	    em.getTransaction().begin();
 	    
 	    productoDao.guardar(celular);
+	    categoriaDao.guardar(celulares);
 	    
 	    em.getTransaction().commit();
 	    em.close();
