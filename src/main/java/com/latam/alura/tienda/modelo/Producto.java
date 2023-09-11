@@ -4,11 +4,10 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /*En esta clase se hace el mapeo de una tabla (productos) de la DB
@@ -32,7 +31,8 @@ public class Producto {
 	private String descripcion; 
 	private BigDecimal precio;
 	private LocalDate fechaDeRegistro = LocalDate.now();
-	@Enumerated(EnumType.STRING) /*Si no se coloca esto la categoria se guarda como entero (la posición en el enum)*/
+	
+	@ManyToOne
 	private Categoria categoria;
 	
 	

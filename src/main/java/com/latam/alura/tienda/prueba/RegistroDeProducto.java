@@ -12,11 +12,12 @@ import com.latam.alura.tienda.utils.JPAUtils;
 public class RegistroDeProducto {
 
 	public static void main(String[] args) {
+		Categoria celulares = new Categoria("CELULARES");
 		Producto celular= new Producto(
 				"Samsung",
 				"telefono usado", 
 				new BigDecimal("1000"),
-				Categoria.CELULARES);
+				celulares);
 		
 		/*Con esto se hace la conexion a la DB como se hacia 
 		 * con JDBC de forma manual, JPA ya tiene las clases
