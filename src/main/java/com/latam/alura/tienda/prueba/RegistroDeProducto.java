@@ -20,8 +20,10 @@ public class RegistroDeProducto {
 	    Producto producto = productoDao.consultaPorId(1l);//como el id es autogenerado, el primer valor generado es 1 
 	    System.out.println(producto.getNombre());
 	    
-	    List<Producto> productos = productoDao.consultarTodos();
+	    List<Producto> productos = productoDao.consultaPorNombreDeCategoria("CELULARES");
 	    productos.forEach(prod->System.out.println(prod.getDescripcion()));
+	    
+	    
 	}
 
 	private static void registrarProducto() {
