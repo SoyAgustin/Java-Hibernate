@@ -1,7 +1,6 @@
 package com.latam.alura.tienda.prueba;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -20,8 +19,9 @@ public class RegistroDeProducto {
 	    Producto producto = productoDao.consultaPorId(1l);//como el id es autogenerado, el primer valor generado es 1 
 	    System.out.println(producto.getNombre());
 	    
-	    List<Producto> productos = productoDao.consultaPorNombreDeCategoria("CELULARES");
-	    productos.forEach(prod->System.out.println(prod.getDescripcion()));
+	    BigDecimal precio = productoDao.consultarPrecioPorNombreDeProducto("Samsung");
+	    //productos.forEach(prod->System.out.println(prod.getDescripcion()));
+	    System.out.println(precio);
 	    
 	    
 	}
