@@ -2,11 +2,14 @@ package com.latam.alura.tienda.modelo;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -22,6 +25,10 @@ public class Pedido {
 	
 	@ManyToOne // Un cliente tiene muchos pedidos
 	private Cliente cliente;
+	
+	@ManyToMany
+	@JoinTable(name="items_pedidox")
+	private List<Producto> productos;
 	
 	public Pedido(Cliente cliente) {
 		super();
