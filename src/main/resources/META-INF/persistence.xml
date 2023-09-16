@@ -8,7 +8,7 @@
 		<!-- <class>mx.com.latam.alura.modelo.Producto</class> opcional, indica en donde se encuentra la ruta de las entidades que van a ser mapeadas -->
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:loja"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:h2:/home/agustin/Escritorio/OracleONE/Java-Hibernate/DB-H2"/>
 			<!-- Por default el ususario y contraseña para H2 son "sa" y "" -->
 			<property name="javax.persistence.jdbc.user" value="sa"/>
 			<property name="javax.persistence.jdbc.password" value=""/>
@@ -16,7 +16,7 @@
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
 			<property name="hibernate.show_sql" value="true"/>
 			<property name="hibernate.format_sql" value="true"/>
-			<property name="hibernate.hbm2ddl.auto" value="update"/><!-- Esta propiedad crea la tabla en caso de que no exista, y en caso de que exista puede colocar valores nuevos en la base de datos, los values posibles son "create","create-drop", "validate" y "update" -->        
+			<property name="hibernate.hbm2ddl.auto" value="create-drop"/><!-- Esta propiedad crea la tabla en caso de que no exista, y en caso de que exista puede colocar valores nuevos en la base de datos, los values posibles son "create","create-drop", "validate" y "update" -->        
 		</properties>	
 	</persistence-unit>
 </persistence>
