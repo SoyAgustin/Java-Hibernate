@@ -1,20 +1,20 @@
-2023-09-20 08:49:47.481478-06:00 database: flush
-org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: D:/Carpetas_computadora/Escritorio/OracleONE/Java-Hibernate/DB-H2.mv.db [2.2.224/7]"
-General error: "org.h2.mvstore.MVStoreException: The file is locked: D:/Carpetas_computadora/Escritorio/OracleONE/Java-Hibernate/DB-H2.mv.db [2.2.224/7]" [50000-224]
+2023-09-20 10:44:07 database: flush
+org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The write format 3 is larger than the supported format 2 [2.1.214/5]"
+General error: "org.h2.mvstore.MVStoreException: The write format 3 is larger than the supported format 2 [2.1.214/5]" [50000-214]
 	at org.h2.message.DbException.get(DbException.java:212)
-	at org.h2.message.DbException.convert(DbException.java:407)
-	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
-	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
-	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
-	at org.h2.mvstore.MVStore.<init>(MVStore.java:291)
-	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
-	at org.h2.mvstore.db.Store.<init>(Store.java:133)
-	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.message.DbException.convert(DbException.java:395)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:125)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:3318)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:593)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:469)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:4082)
+	at org.h2.mvstore.db.Store.<init>(Store.java:136)
+	at org.h2.engine.Database.<init>(Database.java:324)
 	at org.h2.engine.Engine.openSession(Engine.java:92)
 	at org.h2.engine.Engine.openSession(Engine.java:222)
 	at org.h2.engine.Engine.createSession(Engine.java:201)
-	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
-	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
 	at org.h2.Driver.connect(Driver.java:59)
 	at org.hibernate.engine.jdbc.connections.internal.DriverConnectionCreator.makeConnection(DriverConnectionCreator.java:39)
 	at org.hibernate.engine.jdbc.connections.internal.BasicConnectionCreator.createConnection(BasicConnectionCreator.java:62)
@@ -46,37 +46,31 @@ General error: "org.h2.mvstore.MVStoreException: The file is locked: D:/Carpetas
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:79)
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at com.latam.alura.tienda.utils.JPAUtils.<clinit>(JPAUtils.java:8)
-	at com.latam.alura.tienda.prueba.RegistroDePedido.registrarProducto(RegistroDePedido.java:35)
-	at com.latam.alura.tienda.prueba.RegistroDePedido.main(RegistroDePedido.java:15)
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: D:/Carpetas_computadora/Escritorio/OracleONE/Java-Hibernate/DB-H2.mv.db [2.2.224/7]"
-General error: "org.h2.mvstore.MVStoreException: The file is locked: D:/Carpetas_computadora/Escritorio/OracleONE/Java-Hibernate/DB-H2.mv.db [2.2.224/7]" [50000-224]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at com.latam.alura.tienda.prueba.RegistroDeProducto.registrarProducto(RegistroDeProducto.java:38)
+	at com.latam.alura.tienda.prueba.RegistroDeProducto.main(RegistroDeProducto.java:16)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The write format 3 is larger than the supported format 2 [2.1.214/5]"
+General error: "org.h2.mvstore.MVStoreException: The write format 3 is larger than the supported format 2 [2.1.214/5]" [50000-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:554)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
 	... 47 more
-Caused by: org.h2.mvstore.MVStoreException: The file is locked: D:/Carpetas_computadora/Escritorio/OracleONE/Java-Hibernate/DB-H2.mv.db [2.2.224/7]
-	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
-	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
-	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
-	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
-	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+Caused by: org.h2.mvstore.MVStoreException: The write format 3 is larger than the supported format 2 [2.1.214/5]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:1004)
+	at org.h2.mvstore.MVStore.getUnsupportedWriteFormatException(MVStore.java:1066)
+	at org.h2.mvstore.MVStore.readStoreHeader(MVStore.java:883)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:463)
 	... 41 more
-2023-09-20 08:50:58.562785-06:00 database: flush
-org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: D:/Carpetas_computadora/Escritorio/OracleONE/Java-Hibernate/DB-H2.mv.db [2.2.224/7]"
-General error: "org.h2.mvstore.MVStoreException: The file is locked: D:/Carpetas_computadora/Escritorio/OracleONE/Java-Hibernate/DB-H2.mv.db [2.2.224/7]" [50000-224]
+2023-09-20 10:44:07 database: opening D:/Carpetas_computadora/Escritorio/OracleONE/Java-Hibernate/DB-H2/database
+org.h2.message.DbException: Versión del archivo de base de datos no soportada ó encabezado de archivo invalido en archivo "D:/Carpetas_computadora/Escritorio/OracleONE/Java-Hibernate/DB-H2/database.mv.db"
+Unsupported database file version or invalid file header in file "D:/Carpetas_computadora/Escritorio/OracleONE/Java-Hibernate/DB-H2/database.mv.db" [90048-214]
 	at org.h2.message.DbException.get(DbException.java:212)
-	at org.h2.message.DbException.convert(DbException.java:407)
-	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
-	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
-	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
-	at org.h2.mvstore.MVStore.<init>(MVStore.java:291)
-	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
-	at org.h2.mvstore.db.Store.<init>(Store.java:133)
-	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.mvstore.db.Store.convertMVStoreException(Store.java:161)
+	at org.h2.mvstore.db.Store.<init>(Store.java:145)
+	at org.h2.engine.Database.<init>(Database.java:324)
 	at org.h2.engine.Engine.openSession(Engine.java:92)
 	at org.h2.engine.Engine.openSession(Engine.java:222)
 	at org.h2.engine.Engine.createSession(Engine.java:201)
-	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
-	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
 	at org.h2.Driver.connect(Driver.java:59)
 	at org.hibernate.engine.jdbc.connections.internal.DriverConnectionCreator.makeConnection(DriverConnectionCreator.java:39)
 	at org.hibernate.engine.jdbc.connections.internal.BasicConnectionCreator.createConnection(BasicConnectionCreator.java:62)
@@ -108,17 +102,18 @@ General error: "org.h2.mvstore.MVStoreException: The file is locked: D:/Carpetas
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:79)
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at com.latam.alura.tienda.utils.JPAUtils.<clinit>(JPAUtils.java:8)
-	at com.latam.alura.tienda.prueba.RegistroDePedido.registrarProducto(RegistroDePedido.java:35)
-	at com.latam.alura.tienda.prueba.RegistroDePedido.main(RegistroDePedido.java:15)
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: D:/Carpetas_computadora/Escritorio/OracleONE/Java-Hibernate/DB-H2.mv.db [2.2.224/7]"
-General error: "org.h2.mvstore.MVStoreException: The file is locked: D:/Carpetas_computadora/Escritorio/OracleONE/Java-Hibernate/DB-H2.mv.db [2.2.224/7]" [50000-224]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
-	... 47 more
-Caused by: org.h2.mvstore.MVStoreException: The file is locked: D:/Carpetas_computadora/Escritorio/OracleONE/Java-Hibernate/DB-H2.mv.db [2.2.224/7]
-	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
-	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
-	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
-	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
-	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
-	... 41 more
+	at com.latam.alura.tienda.prueba.RegistroDeProducto.registrarProducto(RegistroDeProducto.java:38)
+	at com.latam.alura.tienda.prueba.RegistroDeProducto.main(RegistroDeProducto.java:16)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: Versión del archivo de base de datos no soportada ó encabezado de archivo invalido en archivo "D:/Carpetas_computadora/Escritorio/OracleONE/Java-Hibernate/DB-H2/database.mv.db"
+Unsupported database file version or invalid file header in file "D:/Carpetas_computadora/Escritorio/OracleONE/Java-Hibernate/DB-H2/database.mv.db" [90048-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:678)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	... 42 more
+Caused by: org.h2.mvstore.MVStoreException: The write format 3 is larger than the supported format 2 [2.1.214/5]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:1004)
+	at org.h2.mvstore.MVStore.getUnsupportedWriteFormatException(MVStore.java:1066)
+	at org.h2.mvstore.MVStore.readStoreHeader(MVStore.java:883)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:463)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:4082)
+	at org.h2.mvstore.db.Store.<init>(Store.java:136)
+	... 39 more
