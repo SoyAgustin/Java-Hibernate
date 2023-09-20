@@ -2,6 +2,7 @@ package com.latam.alura.tienda.modelo;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -19,8 +20,8 @@ public class Pedido {
 	@ManyToOne // Un cliente tiene muchos pedidos
 	private Cliente cliente;
 	
-	@OneToMany
-	private List<ItemsPedido> items;
+	@OneToMany(mappedBy = "pedido")//Ya se tiene la tabla items_pedido y no queremos que se genere otra tabla
+	private List<ItemsPedido> items=new ArrayList<>();
 	
 	public Pedido(Cliente cliente) {
 		super();
@@ -28,6 +29,11 @@ public class Pedido {
 	}
 
 	public Pedido() {}
+
+	public void agregarItems(ItemsPedido item){
+		item.setPedido(this);//con esto se relacionan las entidades pedido e items
+		this.items.add(item);
+	}
 
 	public Long getId() {
 		return id;
