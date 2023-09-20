@@ -20,7 +20,7 @@ public class Pedido {
 	@ManyToOne // Un cliente tiene muchos pedidos
 	private Cliente cliente;
 	
-	@OneToMany(mappedBy = "pedido")//Ya se tiene la tabla items_pedido y no queremos que se genere otra tabla
+	@OneToMany(mappedBy = "pedido",cascade=CascadeType.ALL)
 	private List<ItemsPedido> items=new ArrayList<>();
 	
 	public Pedido(Cliente cliente) {
