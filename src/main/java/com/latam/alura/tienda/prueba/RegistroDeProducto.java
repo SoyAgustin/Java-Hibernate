@@ -12,6 +12,7 @@ import com.latam.alura.tienda.dao.PedidoDao;
 import com.latam.alura.tienda.dao.ProductoDao;
 import com.latam.alura.tienda.modelo.*;
 import com.latam.alura.tienda.utils.JPAUtils;
+import com.latam.alura.tienda.vo.RelatorioDeVenta;
 
 public class RegistroDeProducto {
 
@@ -35,7 +36,7 @@ public class RegistroDeProducto {
 		em.getTransaction().commit();
 		BigDecimal valorTotal = pedidoDao.valorTotalVendido();
 		System.out.println("Valor total: "+valorTotal);
-
+		/*
 		List<Object[]> relatorio =pedidoDao.relatorioDeVentas();
 
 		for(Object[] obj:relatorio){
@@ -43,7 +44,11 @@ public class RegistroDeProducto {
 			System.out.println(obj[1]);
 			System.out.println(obj[2]);
 		}
-	    
+		*/
+		//Lo mismo que lo anterior pero usando la clse valued object (VO)
+		List<RelatorioDeVenta> relatorio =pedidoDao.relatorioDeVentasVO();
+
+		relatorio.forEach(System.out::println);
 	}
 
 	private static void registrarProducto() {
