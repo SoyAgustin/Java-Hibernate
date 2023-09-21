@@ -26,21 +26,17 @@ public class PedidoDao {
 		return em.createQuery(jpql,Pedido.class).getResultList();
 	}
 	
-	public List<Pedido> consultaPorNombre(String nombre){
-		String jpql="SELECT P FROM Pedido AS P WHERE P.nombre=:nombre";
-		return em.createQuery(jpql,Pedido.class).setParameter("nombre", nombre).getResultList();
+	public BigDecimal valorTotalVendido(){
+		/*Aqui usamos la función SUM que retorna la suma
+		* y la operación se hace dentro de la base de datos*/
+		String jpql="SELECT SUM(p.valorTotal) FROM Pedido p";
+		return em.createQuery(jpql,BigDecimal.class).getSingleResult();
 	}
-	
-	public List<Pedido> consultaPorNombreDeCategoria(String nombre){
-		String jpql = "SELECT P FROM Pedido AS P WHERE P.categoria.nombre=:nombre";
-		return em.createQuery(jpql,Pedido.class).setParameter("nombre",nombre).getResultList();
+
+	public Double valorPromedioVendido(){
+		String jpql= "SELECT AVG(p.valorTotal) FROM Pedido p";
+		return em.createQuery(jpql,Double.class).getSingleResult();
 	}
-	
-	public BigDecimal consultarPrecioPorNombreDePedido(String nombre) {
-		String jpql ="SELECT P.precio FROM Pedido AS P WHERE P.nombre=:nombre";
-		return em.createQuery(jpql,BigDecimal.class).setParameter("nombre",nombre).getSingleResult();
-	}
-	
 	/*la sintaxis del metodo createQuery recibe como primer
 	 * parametro la consulta jpql y como segundo el tipo 
 	 * de retorno.*/

@@ -25,13 +25,15 @@ public class RegistroDeProducto {
 		Cliente cliente = new Cliente("Juan","Jepa00225");
 		Pedido pedido = new Pedido(cliente);
 
-	    pedido.agregarItems( new ItemsPedido(5,producto,pedido));
+	    pedido.agregarItems( new ItemsPedido(4,producto,pedido));
 
 		em.getTransaction().begin();
 		clienteDao.guardar(cliente);
 		pedidoDao.guardar(pedido);
 
 		em.getTransaction().commit();
+		BigDecimal valorTotal = pedidoDao.valorTotalVendido();
+		System.out.println("Valor total: "+valorTotal);
 	    
 	}
 
@@ -51,9 +53,12 @@ public class RegistroDeProducto {
 	    em.getTransaction().begin();
 	 
 	    productoDao.guardar(celular);
+
 	    categoriaDao.guardar(celulares);
 	    
 	    em.getTransaction().commit();
+
+
 	    em.close();
 	}
 

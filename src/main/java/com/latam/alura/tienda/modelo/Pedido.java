@@ -15,7 +15,7 @@ public class Pedido {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private LocalDate Fecha =LocalDate.now();
-	private BigDecimal valorTotal;
+	private BigDecimal valorTotal = new BigDecimal(0);
 	
 	@ManyToOne // Un cliente tiene muchos pedidos
 	private Cliente cliente;
@@ -33,6 +33,7 @@ public class Pedido {
 	public void agregarItems(ItemsPedido item){
 		item.setPedido(this);//con esto se relacionan las entidades pedido e items
 		this.items.add(item);
+		this.valorTotal = this.valorTotal.add(item.getValor());
 	}
 
 	public Long getId() {

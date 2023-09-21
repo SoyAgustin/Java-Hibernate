@@ -64,4 +64,8 @@ public class ItemsPedido {
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
+
+    public BigDecimal getValor() {
+        return this.precioUnitario.multiply(new BigDecimal(this.cantidad));
+    }
 }
