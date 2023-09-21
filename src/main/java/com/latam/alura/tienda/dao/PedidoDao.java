@@ -40,4 +40,19 @@ public class PedidoDao {
 	/*la sintaxis del metodo createQuery recibe como primer
 	 * parametro la consulta jpql y como segundo el tipo 
 	 * de retorno.*/
+
+	/*Ahora queremos hacer un metodo para obtener los valores de una
+	* tabla de 'relatorio de ventas' en una sola consulta
+	* la tabla tiene la estructura: |producto|cantidad vendida| ultima venta(fecha)|*/
+	public List<Object[]> relatorioDeVentas(){
+		String jpql = "SELECT producto.nombre," +
+				"SUM(item.cantidad)," +
+				"MAX(pedido.fecha) " +
+				"FROM Pedido pedido " +
+				"JOIN pedido.items item " +
+				"JOIN item.producto producto " +
+				"GROUP BY producto.nombre " +
+				"ORDER BY item.cantidad DESC";
+		return em.createQuery(jpql,Object[].class).getResultList();
+    }
 }

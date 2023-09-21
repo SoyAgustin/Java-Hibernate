@@ -14,7 +14,7 @@ public class Pedido {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	private LocalDate Fecha =LocalDate.now();
+	private LocalDate fecha =LocalDate.now();
 	private BigDecimal valorTotal = new BigDecimal(0);
 	
 	@ManyToOne // Un cliente tiene muchos pedidos
@@ -44,12 +44,12 @@ public class Pedido {
 		this.id = id;
 	}
 
-	public LocalDate getFecha() {
-		return Fecha;
+	public LocalDate getfecha() {
+		return fecha;
 	}
 
-	public void setFecha(LocalDate fecha) {
-		Fecha = fecha;
+	public void setfecha(LocalDate fecha) {
+		this.fecha = fecha;
 	}
 
 	public BigDecimal getValorTotal() {

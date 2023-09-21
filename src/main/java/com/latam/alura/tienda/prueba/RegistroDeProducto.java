@@ -2,6 +2,7 @@ package com.latam.alura.tienda.prueba;
 
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -34,6 +35,14 @@ public class RegistroDeProducto {
 		em.getTransaction().commit();
 		BigDecimal valorTotal = pedidoDao.valorTotalVendido();
 		System.out.println("Valor total: "+valorTotal);
+
+		List<Object[]> relatorio =pedidoDao.relatorioDeVentas();
+
+		for(Object[] obj:relatorio){
+			System.out.println(obj[0]);
+			System.out.println(obj[1]);
+			System.out.println(obj[2]);
+		}
 	    
 	}
 
