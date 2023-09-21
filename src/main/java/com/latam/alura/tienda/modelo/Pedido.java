@@ -16,8 +16,12 @@ public class Pedido {
 	private Long id;
 	private LocalDate fecha =LocalDate.now();
 	private BigDecimal valorTotal = new BigDecimal(0);
-	
-	@ManyToOne // Un cliente tiene muchos pedidos
+
+	/*Los elementos que sean ToOne se cargan de forma Eager lo que hace que
+	* se carguen de forma anticipada, generando joins entre las tablas que
+	* sean igual ToOne, por eso se cambia a Lazy, en donde esto no ocurre
+	* y hace que la aplicación sea optimice mejor los procesos*/
+	@ManyToOne(fetch=FetchType.LAZY) // Un cliente tiene muchos pedidos
 	private Cliente cliente;
 	
 	@OneToMany(mappedBy = "pedido",cascade=CascadeType.ALL)

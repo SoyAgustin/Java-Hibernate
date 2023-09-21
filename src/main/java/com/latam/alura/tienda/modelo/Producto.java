@@ -33,7 +33,7 @@ public class Producto {
 	private BigDecimal precio;
 	private LocalDate fechaDeRegistro = LocalDate.now();
 	
-	@ManyToOne /*Tipo de relacionamiento: muchos productos tienen una misma categoria*/
+	@ManyToOne(fetch=FetchType.LAZY) /*Tipo de relacionamiento: muchos productos tienen una misma categoria*/
 	private Categoria categoria;
 	
 	
