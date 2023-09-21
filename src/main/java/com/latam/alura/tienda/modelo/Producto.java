@@ -3,12 +3,7 @@ package com.latam.alura.tienda.modelo;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /*En esta clase se hace el mapeo de una tabla (productos) de la DB
  * una entidad  JPA funciona como un espejo de una tabla en la DB*/
@@ -19,6 +14,12 @@ import javax.persistence.Table;
  * se llama producto, para solucionar esto se usa la 
  * anotación Table*/
 @Table(name = "productos")
+/*Normalmente los accesos a la base de datos se traran en las clases DAO, pero se pueden hacer
+* consultas medinte namedquerys dentro de la propia entidad. Por ejemplo, en lugar de hacer la consulta
+* en ProductoDao podemos hacerlo aqui en Producto usando NamedQuery
+* en realidad no importa el nombre que se le ponga a la namedquery pero es buena práctica colocar en que
+* entidad está declarada, en este caso Producto, asi que sería Producto.nombre*/
+@NamedQuery(name="Producto.consultaDePrecio",query = "SELECT P.precio FROM Producto AS P WHERE P.nombre=:nombre")
 public class Producto {
 	/*En principio estos atributos son los nombres de las
 	 * columnas de la tabla*/

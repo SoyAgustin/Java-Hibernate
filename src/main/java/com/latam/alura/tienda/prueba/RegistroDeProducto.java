@@ -49,6 +49,9 @@ public class RegistroDeProducto {
 		List<RelatorioDeVenta> relatorio =pedidoDao.relatorioDeVentasVO();
 
 		relatorio.forEach(System.out::println);
+
+		BigDecimal precio = productoDao.consultarPrecioPorNombreDeProducto("Samsung");
+		System.out.println(precio);
 	}
 
 	private static void registrarProducto() {
