@@ -6,6 +6,10 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import com.latam.alura.tienda.modelo.Producto;
 
@@ -48,7 +52,10 @@ public class ProductoDao {
 	/*la sintaxis del metodo createQuery recibe como primer
 	 * parametro la consulta jpql y como segundo el tipo 
 	 * de retorno.*/
-	public List<Producto>  consultarPrecioPorParameteros(String nombre, BigDecimal precio, LocalDate fecha){
+
+	/*Consultas dinámicas por parámetros*/
+	public List<Producto>  consultarPorParametros(String nombre, BigDecimal precio, LocalDate fecha){
+		//StringBuilder es mutable, String es inmutable
 		StringBuilder jpql=new StringBuilder("SELECT p FROM Producto p WHERE 1=1");
 		if (nombre != null && nombre.trim().isEmpty()){
 			jpql.append("AND p.nombre=:nombre");
@@ -74,4 +81,29 @@ public class ProductoDao {
 		return query.getResultList();
 	}
 
+	/*Consultas dinámincas con API Criteria*/
+	public List<Producto>  consultarPorParametrosConAPICriteria(String nombre, BigDecimal precio, LocalDate fecha){
+		StringBuilder jpql=new StringBuilder("SELECT p FROM Producto p WHERE 1=1");
+
+		CriteriaBuilder builder= em.getCriteriaBuilder();
+
+		CriteriaQuery<Producto> query = builder.createQuery(Producto.class);
+
+		Root<Producto> from  = query.from(Producto.class);
+
+		Predicate filtro = builder.and();
+
+		if (nombre != null && nombre.trim().isEmpty()){
+			filtro = builder.and(filtro,builder.equal(from.get("nombre"),nombre));
+		}
+		if (precio != null && precio.equals(new BigDecimal(0))){
+			filtro = builder.and(filtro,builder.equal(from.get("precio"),precio));
+		}
+		if (fecha != null){
+			filtro = builder.and(filtro,builder.equal(from.get("fechaDeREgistro"),fecha));
+		}
+
+		query = query.where(filtro);
+		return em.createQuery(query).getResultList();
+	}
 }
