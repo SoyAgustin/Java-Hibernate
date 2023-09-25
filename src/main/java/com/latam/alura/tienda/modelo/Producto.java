@@ -1,5 +1,8 @@
 package com.latam.alura.tienda.modelo;
 
+import net.bytebuddy.dynamic.loading.ClassReloadingStrategy;
+import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -20,6 +23,18 @@ import javax.persistence.*;
 * en realidad no importa el nombre que se le ponga a la namedquery pero es buena práctica colocar en que
 * entidad está declarada, en este caso Producto, asi que sería Producto.nombre*/
 @NamedQuery(name="Producto.consultaDePrecio",query = "SELECT P.precio FROM Producto AS P WHERE P.nombre=:nombre")
+
+/*La anotacion INheritance se utiliza para que
+* se reconozca a las clases que heredan de esta y
+* las junte en una única tabla, en este caso las
+* entidades que heredan de Producto son Electronico
+* y Libros.
+* Con SINGLE_TABLE se crea la tabla productos con
+* todos los atributos que están aqui junto con los
+* que están en las heredadas o se puede usar
+* JOINED para tener tablas separadas
+* JOINED es mas lento que SINGLE_TABLE*/
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Producto {
 	/*En principio estos atributos son los nombres de las
 	 * columnas de la tabla*/
