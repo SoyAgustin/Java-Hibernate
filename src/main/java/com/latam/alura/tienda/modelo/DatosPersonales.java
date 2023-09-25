@@ -2,13 +2,16 @@ package com.latam.alura.tienda.modelo;
 
 
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 /*Esta clase se va a inyectar en la clase Cliente
 * es decir, queremos separar en dos entidades los
 * datos personales de los clientes pero sin crear
 * una nueva clase*/
 @Embeddable
-public class DatosPersonales {
+/*Las entidades que usen @Embeddable deben implementar
+* la clase Serializable*/
+public class DatosPersonales implements Serializable {
     private String nombre;
     private String dni;
 

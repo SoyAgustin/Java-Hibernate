@@ -19,39 +19,10 @@ public class RegistroDeProducto {
 	public static void main(String[] args) throws FileNotFoundException {
 		registrarProducto();
 		EntityManager em = JPAUtils.getEntityManager();
-	    ProductoDao productoDao = new ProductoDao(em);
-	    Producto producto = productoDao.consultaPorId(1l);//como el id es autogenerado, el primer valor generado es 1 
-		ClienteDao clienteDao = new ClienteDao(em);
-		PedidoDao pedidoDao = new PedidoDao(em);
 
-		Cliente cliente = new Cliente("Juan","Jepa00225");
-		Pedido pedido = new Pedido(cliente);
+		Categoria find = em.find(Categoria.class,new CategoriaId("CELULARES","456"));
 
-	    pedido.agregarItems( new ItemsPedido(4,producto,pedido));
-
-		em.getTransaction().begin();
-		clienteDao.guardar(cliente);
-		pedidoDao.guardar(pedido);
-
-		em.getTransaction().commit();
-		BigDecimal valorTotal = pedidoDao.valorTotalVendido();
-		System.out.println("Valor total: "+valorTotal);
-		/*
-		List<Object[]> relatorio =pedidoDao.relatorioDeVentas();
-
-		for(Object[] obj:relatorio){
-			System.out.println(obj[0]);
-			System.out.println(obj[1]);
-			System.out.println(obj[2]);
-		}
-		*/
-		//Lo mismo que lo anterior pero usando la clse valued object (VO)
-		List<RelatorioDeVenta> relatorio =pedidoDao.relatorioDeVentasVO();
-
-		relatorio.forEach(System.out::println);
-
-		BigDecimal precio = productoDao.consultarPrecioPorNombreDeProducto("Samsung");
-		System.out.println(precio);
+		System.out.println(find.getNombre());
 	}
 
 	private static void registrarProducto() {
